@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const NewsCard = ({ news }) => {
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 hover:shadow-xl">
       <div className="grid gap-2">
         {/* Author Information */}
         <div className="flex items-center p-4 mb-4 bg-gray-100 rounded-t-lg">
@@ -38,7 +38,7 @@ const NewsCard = ({ news }) => {
 
         {/* News Details */}
         <p className="text-sm text-gray-600 px-4">
-          {news.details.slice(0, 200)}...
+          {news.details.slice(0, 150)}...
           <Link to={`/news/${news._id}`} className="btn btn-link btn-xs text-primary">Read More</Link>
         </p>
 

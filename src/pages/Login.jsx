@@ -1,20 +1,24 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../provider/AuthProvider';
 
 const Login = () => {
     const {logIn,setUser} = useContext(AuthContext);
+    const location = useLocation();
+    // console.log(location);
+    const navigate = useNavigate();
     const handleLogin = (e)=>{
         e.preventDefault();
         const form = new FormData(e.target);
         const email = form.get('email');
         const password = form.get('password');
-        console.log(email,password);
+        // console.log(email,password);
         logIn(email,password)
         .then((userCredential) => {
             const user = userCredential.user;
             setUser(user);
-            console.log('Signed In ',user);
+            // console.log('Signed In ',user);
+            navigate(location?.state ? location.state : '/');
         })
         .catch((error) => {
             const errorCode = error.code;
